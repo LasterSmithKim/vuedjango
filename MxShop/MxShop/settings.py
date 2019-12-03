@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'reversion',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vuedjango',
         'USER': 'vuedjango',
-        'PASSWORD': '*******',
+        'PASSWORD': 'smith123',
         'HOST': '192.168.43.226',
         'PORT': '5432',
     }
