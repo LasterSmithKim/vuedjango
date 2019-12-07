@@ -1,14 +1,14 @@
 from django.shortcuts import render
 
 from rest_framework.views import APIView
-from goods.serializers import GoodsSerializer
+from goods.serializers import GoodsSerializer, GoodsCategorySerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import viewsets
-from .models import Goods
+from .models import Goods, GoodsCategory
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import GoodsFilter
 from rest_framework import filters
@@ -31,9 +31,9 @@ class GoodsListView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 '''
 class GoodsPagination(PageNumberPagination):
-    page_size = 10
+    page_size = 12
     page_size_query_param = 'page_size'
-    page_query_param = 'pages'
+    page_query_param = 'page'
     max_page_size = 100
 
 
@@ -46,3 +46,11 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     search_fields = ('name', 'goods_brief', 'goods_desc')
     # 排序
     ordering_fields = ('sold_num', 'shop_price')
+
+class CategoryViewSet(mixins.ListModelMixin,  mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    '''
+        list:
+            商品分类列表数据
+    '''
+    queryset = GoodsCategory.objects.filter(category_type=1)
+    serializer_class = GoodsCategorySerializer
