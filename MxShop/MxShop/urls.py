@@ -28,6 +28,10 @@ router = DefaultRouter()
 router.register(r'goods', GoodsListViewSet)
 router.register(r'category', CategoryViewSet)
 #from goods.views import GoodsListView
+#token身份验证url请求入口
+from rest_framework.authtoken import views
+#jwt的身份验证模块
+from rest_framework_jwt.views import obtain_jwt_token
 
 
 
@@ -42,5 +46,10 @@ urlpatterns = [
     #drf 登录入口
     path(r'api-auth/',include('rest_framework.urls', namespace='rest_framework')),
     #path(r'goods/', GoodsListView.as_view(), name='goods-list')
+    # token身份验证url请求入口
+    path(r'api-token-auth/', views.obtain_auth_token),
+    #jwt的身份验证模块url请求入口
+    path(r'login/', obtain_jwt_token),
     re_path('^', include(router.urls)),
+
 ]

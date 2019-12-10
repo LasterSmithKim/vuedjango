@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
+import datetime
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     'corsheaders',#解决跨越问题
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -96,8 +98,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vuedjango',
         'USER': 'vuedjango',
-        'PASSWORD': 'smith123',
-        'HOST': '192.168.43.226',
+        'PASSWORD': '******',
+        'HOST': '192.168.1.140',
         'PORT': '5432',
     }
 }
@@ -135,6 +137,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+#自定义用户验证
+
+AUTHENTICATION_BACKENDS = [
+    'users.views.CustomBackend',
+]
+
+JWT_AUTH = {
+       'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+       'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -150,3 +164,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static_all")
 # 设置上传文件的路径
 MEDIA_URL="/media/"
 MEDIA_ROOT=os.path.join(BASE_DIR, "media")
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.TokenAuthentication',Token验证方法
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    )
+}

@@ -12,7 +12,7 @@ class GoodsAdmin(object):
     #可以搜索的字段
     search_fields = ['name', ]
     #列表页可以直接编辑的
-    list_editable = ["is_hot", ]
+    list_editable = ["is_hot", "click_num",]
     #过滤器
     list_filter = ["name", "click_num", "sold_num", "fav_num", "goods_num", "market_price",
                    "shop_price", "is_new", "is_hot", "add_time", "category__name"]
