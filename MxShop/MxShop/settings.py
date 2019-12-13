@@ -98,7 +98,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vuedjango',
         'USER': 'vuedjango',
-        'PASSWORD': '******',
+        'PASSWORD': '********',
         'HOST': '192.168.1.140',
         'PORT': '5432',
     }
@@ -173,3 +173,10 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     )
 }
+
+#手机号验证 正则表达式
+REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+
+#互亿网配置信息
+APIUSER = "********"
+APIKEY = "********"
