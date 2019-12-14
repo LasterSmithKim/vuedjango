@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Goods, GoodsCategory
+from .models import Goods, GoodsCategory, GoodsImage
 
 
 class GoodsCategorySerializer3(serializers.ModelSerializer):
@@ -31,11 +31,19 @@ class GoodsCategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+#轮播图
+class GoodsImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsImage
+        fields = ("image",)
+
 class GoodsSerializer(serializers.ModelSerializer): #参数serializers.Serializer
     #name = serializers.CharField(max_length=100, required=True)
     #click_num = serializers.IntegerField(default=0)
     #goods_front_image = serializers.ImageField()
     category = GoodsCategorySerializer() #外键的 序列化 嵌套
+    # images是数据库中设置的related_name="images"
+    images = GoodsImageSerializer(many=True)
     class Meta:
         model = Goods
         #fields = ('name', 'click_num', 'market_price', 'add_time')
