@@ -5,7 +5,7 @@ from .serializers import UserFavSerializer
 # Create your views here.
 
 
-class UserFavViewset(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
+class UserFavViewset(mixins.ListModelMixin, mixins.CreateModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
     '''
     用户收藏
     '''
