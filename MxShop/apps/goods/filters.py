@@ -13,9 +13,14 @@ class GoodsFilter(django_filters.rest_framework.FilterSet):
     #name = django_filters.CharFilter(field_name="name", lookup_expr='icontains')
     top_category = django_filters.NumberFilter(method='top_category_filter')
 
+#    def top_category_filter(self, queryset, name, value):
+#       return queryset.filter(Q(category_id=value) | Q(category__parent_category_id=value) | Q(category__parent_category__parent_category_id=value))
     def top_category_filter(self, queryset, name, value):
-        return queryset.filter(Q(category_id=value) | Q(category__parent_category_id=value) | Q(category__parent_category__parent_category_id=value))
+        # 不管当前点击的是一级分类二级分类还是三级分类，都能找到。
+        return queryset.filter(Q(category_id=value) | Q(category__parent_category_id=value) | Q(
+            category__parent_category__parent_category_id=value))
+
 
     class Meta:
         model = Goods
-        fields = ['pricemin', 'pricemax',]
+        fields = ['pricemin', 'pricemax', 'is_hot',]

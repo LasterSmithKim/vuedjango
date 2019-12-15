@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Goods, GoodsCategory, GoodsImage
 
 
+
 class GoodsCategorySerializer3(serializers.ModelSerializer):
     '''三级分类'''
     class Meta:

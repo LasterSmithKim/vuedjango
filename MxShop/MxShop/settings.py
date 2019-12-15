@@ -98,8 +98,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vuedjango',
         'USER': 'vuedjango',
-        'PASSWORD': '******',
-        'HOST': '192.168.1.140',
+        'PASSWORD': 'smith123',
+        'HOST': '192.168.56.101',
         'PORT': '5432',
     }
 }
