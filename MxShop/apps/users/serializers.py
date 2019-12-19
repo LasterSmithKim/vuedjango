@@ -40,6 +40,8 @@ class UserDetailSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = User
+        read_only_fields = ('mobile',)
+        #extra_kwargs = {'read_only': True}
         fields = ('name', 'gender', 'birthday', 'email', 'mobile')
 
 
