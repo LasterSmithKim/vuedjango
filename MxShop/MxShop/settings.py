@@ -171,7 +171,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         #'rest_framework.authentication.TokenAuthentication',Token验证方法
         #'rest_framework_jwt.authentication.JSONWebTokenAuthentication', 将jsonewebtoken验证方法应用于具体app的模型中，不要对全局配置
-    )
+
+    ),
+    #api接口文档
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 #手机号验证 正则表达式

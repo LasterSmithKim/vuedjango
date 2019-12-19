@@ -31,7 +31,6 @@ router.register(r'goods', GoodsListViewSet, base_name="goods")
 router.register(r'category', CategoryViewSet, base_name="category")
 router.register(r'codes', SmsCodeViewset, base_name="codes")
 router.register(r'users', UserViewset, base_name="users")
-router.register(r'users', UserViewset, base_name="users")
 router.register(r'userfavs', UserFavViewset, base_name="userfavs")
 #from goods.views import GoodsListView
 #token身份验证url请求入口
@@ -48,7 +47,7 @@ urlpatterns = [
     # 文件 图片
     path(r'media/<path:path>', serve, {'document_root': MEDIA_ROOT}),
     #drf文档，title自定义
-    path(r'docs',include_docs_urls(title='django + vue')),
+    path(r'docs/',include_docs_urls(title='django + vue')),
     #drf 登录入口
     path(r'api-auth/',include('rest_framework.urls', namespace='rest_framework')),
     #path(r'goods/', GoodsListView.as_view(), name='goods-list')
