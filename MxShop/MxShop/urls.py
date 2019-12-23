@@ -25,6 +25,7 @@ from rest_framework.routers import DefaultRouter
 from goods.views import GoodsListViewSet, CategoryViewSet
 from users.views import SmsCodeViewset, UserViewset
 from user_operation.views import UserFavViewset, LeavingMessageViewset, AddressViewset
+from trade.views import ShopingCartViewset
 router = DefaultRouter()
 #配置goods的url
 router.register(r'goods', GoodsListViewSet, base_name="goods")
@@ -34,6 +35,7 @@ router.register(r'users', UserViewset, base_name="users")
 router.register(r'userfavs', UserFavViewset, base_name="userfavs")
 router.register(r'messages', LeavingMessageViewset, base_name="messages")
 router.register(r'address', AddressViewset, base_name="address")
+router.register(r'shopcarts', ShopingCartViewset, base_name="shopcarts")
 #from goods.views import GoodsListView
 #token身份验证url请求入口
 from rest_framework.authtoken import views
